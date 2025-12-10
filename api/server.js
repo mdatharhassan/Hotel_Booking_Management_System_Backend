@@ -15,7 +15,7 @@ import mongoose from "mongoose";
 import serverless from "serverless-http";
 
 // Load environment variables from .env file
-dotenv.config();
+// dotenv.config();
 
 // Initialize Express app
 const app = express();
