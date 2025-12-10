@@ -12,7 +12,7 @@ import mongoose from "mongoose";
 
 let isConnected = false;
 
-export async function connectDB(mongoURL) {
+async function connectDB(mongoURL) {
   if (isConnected) return;
   try {
     const conn = await mongoose.connect(mongoURL);
@@ -28,7 +28,7 @@ export async function connectDB(mongoURL) {
   // console.log("MongoDB connected (once only)");
 }
 
-// export default connectDB;
+export default connectDB;
 
 // mongoose.connect("mongoURL").then(() => {
 //   console.log("MongoDB connected successfully");
