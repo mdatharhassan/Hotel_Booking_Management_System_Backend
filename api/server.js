@@ -24,7 +24,7 @@ const MONGO_URL = process.env.MONGO_URL;
 
 // Cors configuration
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://hotel-booking-management-system-fro.vercel.app/",
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 };
