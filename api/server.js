@@ -67,23 +67,23 @@ app.use("/api/settings", settingRouter);
 //   await connectDB(MONGO_URI);
 //   next();
 // });
-// connectDB(MONGO_URI);
-let dbConnected = false;
+connectDB(MONGO_URI);
+// let dbConnected = false;
 
-app.use(async (req, res, next) => {
-  if (!dbConnected) {
-    await connectDB(MONGO_URI);
-    dbConnected = true;
-  }
-  next();
-});
+// app.use(async (req, res, next) => {
+//   if (!dbConnected) {
+//     await connectDB(MONGO_URI);
+//     dbConnected = true;
+//   }
+//   next();
+// });
 // // Start the server
 // Start server when running locally (avoid starting listener in production/serverless)
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running locally on port ${PORT}`);
-  });
-}
+// if (process.env.NODE_ENV !== "production") {
+//   app.listen(PORT, () => {
+//     console.log(`Server running locally on port ${PORT}`);
+//   });
+// }
 
 // Export handler for Vercel (named and default export)
 export const handler = serverless(app);
