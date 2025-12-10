@@ -19,6 +19,9 @@ import serverless from "serverless-http";
 
 // Initialize Express app
 const app = express();
+app.get("/", (req, res) => {
+  res.send("Innsight Admin Server is running");
+});
 //const PORT = process.env.PORT || 5000;
 //const MONGO_URI = process.env.MONGO_URL;
 
@@ -41,9 +44,9 @@ const corsOptions = {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.get("/", (req, res) => {
-  res.send("Innsight Admin Server is running");
-});
+// app.get("/", (req, res) => {
+//   res.send("Innsight Admin Server is running");
+// });
 
 // Middleware to parse JSON requests
 app.use(cors(corsOptions));
