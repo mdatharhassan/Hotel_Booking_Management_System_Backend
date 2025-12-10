@@ -1,17 +1,17 @@
 import cors from "cors";
 import express from "express";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import path from "path";
-import { fileURLToPath } from "url";
-import cookieParser from "cookie-parser";
-import authRouter from "../routes/auth.js";
-import cabinRouter from "../routes/cabin.js";
-import bookingRouter from "../routes/booking.js";
-import connectDB from "../config/mongoDB.js";
-import settingRouter from "../routes/settings.js";
-import module from "module";
-import mongoose from "mongoose";
+// import dotenv from "dotenv";
+// import morgan from "morgan";
+// import path from "path";
+// import { fileURLToPath } from "url";
+// import cookieParser from "cookie-parser";
+// import authRouter from "../routes/auth.js";
+// import cabinRouter from "../routes/cabin.js";
+// import bookingRouter from "../routes/booking.js";
+// import connectDB from "../config/mongoDB.js";
+// import settingRouter from "../routes/settings.js";
+// import module from "module";
+// import mongoose from "mongoose";
 import serverless from "serverless-http";
 
 // Load environment variables from .env file
@@ -20,13 +20,13 @@ import serverless from "serverless-http";
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URL;
+// const MONGO_URI = process.env.MONGO_URL;
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
-app.get("/favicon.ico", (req, res) => {
-  res.status(204).end();
-});
+// app.get("/favicon.ico", (req, res) => {
+//   res.status(204).end();
+// });
 
 // Cors configuration
 const corsOptions = {
@@ -67,7 +67,7 @@ app.get("/", (req, res) => {
 //   await connectDB(MONGO_URI);
 //   next();
 // });
-connectDB(MONGO_URI);
+// connectDB(MONGO_URI);
 // let dbConnected = false;
 
 // app.use(async (req, res, next) => {
