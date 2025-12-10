@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 // import morgan from "morgan";
 // import path from "path";
 // import { fileURLToPath } from "url";
@@ -8,14 +8,14 @@ import express from "express";
 // import authRouter from "../routes/auth.js";
 // import cabinRouter from "../routes/cabin.js";
 // import bookingRouter from "../routes/booking.js";
-// import connectDB from "../config/mongoDB.js";
+import connectDB from "../config/mongoDB.js";
 // import settingRouter from "../routes/settings.js";
 // import module from "module";
 // import mongoose from "mongoose";
 import serverless from "serverless-http";
 
 // Load environment variables from .env file
-// dotenv.config();
+dotenv.config();
 
 // Initialize Express app
 const app = express();
@@ -37,7 +37,7 @@ const corsOptions = {
 
 // Middleware to parse JSON requests
 app.use(cors(corsOptions));
-// app.use(express.json());
+app.use(express.json());
 // app.use(morgan("dev"));
 // app.use(cookieParser());
 // app.use(express.urlencoded({ extended: true }));
@@ -54,12 +54,10 @@ app.get("/", (req, res) => {
 // app.use("/api/settings", settingRouter);
 
 // this is for localhost
-// connectDB(MONGO_URL)
-// if (process.env.NODE_ENV !== "production") {
-//   app.listen(PORT, () => {
-//     console.log(`Server running locally on port ${PORT}`);
-//   });
-// }
+connectDB(process.env.MONGO_URL);
+// app.listen(PORT, () => {
+//   console.log(`Server running locally on port ${PORT}`);
+// });
 
 //this is for vercel
 // Middleware that ensures DB is connected before handling request
