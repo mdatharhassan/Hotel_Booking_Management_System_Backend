@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 // import authRouter from "../routes/auth.js";
 // import cabinRouter from "../routes/cabin.js";
 // import bookingRouter from "../routes/booking.js";
-import connectDB from "../config/mongoDB.js";
+// import connectDB from "../config/mongoDB.js";
 // import settingRouter from "../routes/settings.js";
 // import module from "module";
 // import mongoose from "mongoose";
@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 // app.use("/api/settings", settingRouter);
 
 // this is for localhost
-connectDB(process.env.MONGO_URL);
+// connectDB(process.env.MONGO_URL);
 // app.listen(PORT, () => {
 //   console.log(`Server running locally on port ${PORT}`);
 // });
