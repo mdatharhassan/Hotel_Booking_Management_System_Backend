@@ -19,8 +19,8 @@ import serverless from "serverless-http";
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URL;
+//const PORT = process.env.PORT || 5000;
+//const MONGO_URI = process.env.MONGO_URL;
 
 // Cors configuration
 const corsOptions = {
@@ -77,10 +77,10 @@ app.use("/api/settings", settingRouter);
 
 //this is for vercel
 // Middleware that ensures DB is connected before handling request
-app.use(async (req, res, next) => {
-  await connectDB(MONGO_URI);
-  next();
-});
+// app.use(async (req, res, next) => {
+//   await connectDB(MONGO_URI);
+//   next();
+// });
 
 // // Start the server
 // Start server when running locally (avoid starting listener in production/serverless)
