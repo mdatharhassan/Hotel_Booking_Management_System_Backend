@@ -12,16 +12,23 @@ import mongoose from "mongoose";
 
 let isConnected = false;
 
-async function connectDB(mongoURL) {
+export async function connectDB(mongoURL) {
   if (isConnected) return;
+  try {
+    const conn = await mongoose.connect(mongoURL);
+    isConnected = true;
+    console.log("MongoDB connected:", conn.connection.host);
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    throw err;
+  }
+  // await mongoose.connect(mongoURL);
+  // isConnected = true;
 
-  await mongoose.connect(mongoURL);
-  isConnected = true;
-
-  console.log("MongoDB connected (once only)");
+  // console.log("MongoDB connected (once only)");
 }
 
-export default connectDB;
+// export default connectDB;
 
 // mongoose.connect("mongoURL").then(() => {
 //   console.log("MongoDB connected successfully");
