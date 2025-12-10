@@ -5,11 +5,11 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-import authRouter from "./routes/auth.js";
-import cabinRouter from "./routes/cabin.js";
-import bookingRouter from "./routes/booking.js";
-import connectDB from "./config/mongoDB.js";
-import settingRouter from "./routes/settings.js";
+import authRouter from "../routes/auth.js";
+import cabinRouter from "../routes/cabin.js";
+import bookingRouter from "../routes/booking.js";
+import connectDB from "../config/mongoDB.js";
+import settingRouter from "../routes/settings.js";
 import module from "module";
 import mongoose from "mongoose";
 
@@ -67,31 +67,11 @@ app.use("/api/bookings", bookingRouter);
 app.use("/api/settings", settingRouter);
 
 // // Connect to MongoDB
-// connectDB(MONGO_URL);
+connectDB(MONGO_URL);
 
 // // Start the server
 // app.listen(PORT, () => {
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-// let isConnected = false;
-// async function connecttoMongoDB() {
-//   try {
-//     await mongoose.connectDB(MONGO_URL, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     });
-//     isConnected = true;
-//     console.log("Connected to MongoDB");
-//   } catch (error) {
-//     console.error("Error connecting to MongDB:", error);
-//   }
-// }
-// module.exports = app;
-
-mongoose
-  .connect(MONGO_URL)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongDB Connection error", err));
-
-module.exports = app;
+export default app;
