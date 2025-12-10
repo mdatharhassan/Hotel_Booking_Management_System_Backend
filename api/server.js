@@ -22,21 +22,18 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URL;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end();
+});
+
 // Cors configuration
 const corsOptions = {
   origin: ["https://hotel-booking-management-system-fro.vercel.app"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 };
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.get("/favicon.ico", (req, res) => {
-  res.status(204).end();
-});
-app.get("/", (req, res) => {
-  res.send("Innsight Admin Server is running");
-});
 
 // Middleware to parse JSON requests
 app.use(cors(corsOptions));
@@ -45,6 +42,9 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Innsight Admin Server is running");
+});
 // API Routes
 app.use("/api/auth", authRouter);
 app.use("/api/cabins", cabinRouter);
@@ -67,7 +67,16 @@ app.use("/api/settings", settingRouter);
 //   await connectDB(MONGO_URI);
 //   next();
 // });
-connectDB(MONGO_URI);
+// connectDB(MONGO_URI);
+let dbConnected = false;
+
+app.use(async (req, res, next) => {
+  if (!dbConnected) {
+    await connectDB(MONGO_URI);
+    dbConnected = true;
+  }
+  next();
+});
 // // Start the server
 // Start server when running locally (avoid starting listener in production/serverless)
 if (process.env.NODE_ENV !== "production") {
