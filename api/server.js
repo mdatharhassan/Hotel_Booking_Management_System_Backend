@@ -67,15 +67,19 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/bookings", bookingRouter);
 app.use("/api/settings", settingRouter);
 
-// // Connect to MongoDB
+// this is for localhost
+// connectDB(MONGO_URL)
+// if (process.env.NODE_ENV !== "production") {
+//   app.listen(PORT, () => {
+//     console.log(`Server running locally on port ${PORT}`);
+//   });
+// }
+
+//this is for vercel
 // Middleware that ensures DB is connected before handling request
 app.use(async (req, res, next) => {
-  try {
-    await connectDB(MONGO_URL);
-    next();
-  } catch (err) {
-    console.log(err);
-  }
+  await connectDB(MONGO_URL);
+  next();
 });
 
 // // Start the server
