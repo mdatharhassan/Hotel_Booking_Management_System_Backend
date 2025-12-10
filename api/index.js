@@ -84,6 +84,6 @@ app.get("/", (req, res) => {
 // }
 
 // Export handler for Vercel (named and default export)
-// const handler = serverless(app);
-// export default handler;
-module.exports = app;
+const handler = serverless(app);
+export default handler;
+// module.exports = app;
