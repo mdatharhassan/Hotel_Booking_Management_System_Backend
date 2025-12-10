@@ -1,5 +1,5 @@
 import express from "express";
-import Booking from "../model/bookingmodel.js";
+import Booking from "../model/bookingModel.js";
 import userAuth from "../middleware/auth.js";
 import { getToday } from "../utils/helper.js";
 
