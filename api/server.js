@@ -15,12 +15,12 @@ import mongoose from "mongoose";
 import serverless from "serverless-http";
 
 // Load environment variables from .env file
-dotenv.config();
+//dotenv.config();
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URI = process.env.MONGO_URL;
 
 // Cors configuration
 const corsOptions = {
@@ -78,7 +78,7 @@ app.use("/api/settings", settingRouter);
 //this is for vercel
 // Middleware that ensures DB is connected before handling request
 app.use(async (req, res, next) => {
-  await connectDB(MONGO_URL);
+  await connectDB(MONGO_URI);
   next();
 });
 
