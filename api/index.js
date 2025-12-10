@@ -10,7 +10,7 @@ import dotenv from "dotenv";
 // import bookingRouter from "../routes/booking.js";
 // import connectDB from "../config/mongoDB.js";
 // import settingRouter from "../routes/settings.js";
-// import module from "module";
+import module from "module";
 // import mongoose from "mongoose";
 import serverless from "serverless-http";
 
@@ -84,5 +84,6 @@ app.get("/", (req, res) => {
 // }
 
 // Export handler for Vercel (named and default export)
-const handler = serverless(app);
-export default handler;
+// const handler = serverless(app);
+// export default handler;
+module.exports = app;
