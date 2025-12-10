@@ -11,6 +11,7 @@ import bookingRouter from "./routes/booking.js";
 import connectDB from "./config/mongoDB.js";
 import settingRouter from "./routes/settings.js";
 import module from "module";
+import mongoose from "mongoose";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -49,12 +50,12 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  if (!isConnected) {
-    connecttoMongoDB();
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (!isConnected) {
+//     connecttoMongoDB();
+//   }
+//   next();
+// });
 
 // API Routes
 app.use("/api/auth", authRouter);
@@ -73,17 +74,24 @@ app.use("/api/settings", settingRouter);
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-let isConnected = false;
-async function connecttoMongoDB() {
-  try {
-    await mongoose.connectDB(MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    isConnected = true;
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("Error connecting to MongDB:", error);
-  }
-}
+// let isConnected = false;
+// async function connecttoMongoDB() {
+//   try {
+//     await mongoose.connectDB(MONGO_URL, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     });
+//     isConnected = true;
+//     console.log("Connected to MongoDB");
+//   } catch (error) {
+//     console.error("Error connecting to MongDB:", error);
+//   }
+// }
+// module.exports = app;
+
+mongoose
+  .connect(MONGO_URL)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongDB Connection error", err));
+
 module.exports = app;
