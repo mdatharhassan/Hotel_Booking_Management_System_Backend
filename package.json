@@ -5,9 +5,9 @@
   "main": "api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "server": "nodemon server.js",
-    "vercel-start": "node server.js"
+    "start": "node api/server.js",
+    "server": "nodemon api/server.js",
+    "vercel-start": "node api/server.js"
   },
   "author": "",
   "license": "ISC",

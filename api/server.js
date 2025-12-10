@@ -68,7 +68,15 @@ app.use("/api/bookings", bookingRouter);
 app.use("/api/settings", settingRouter);
 
 // // Connect to MongoDB
-connectDB(MONGO_URL);
+// Middleware that ensures DB is connected before handling request
+app.use(async (req, res, next) => {
+  try {
+    await connectDB(MONGO_URL);
+    next();
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 // // Start the server
 // Start server when running locally (avoid starting listener in production/serverless)
@@ -78,4 +86,6 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-export default serverless(app);
+// Export handler for Vercel (named and default export)
+export const handler = serverless(app);
+export default handler;
