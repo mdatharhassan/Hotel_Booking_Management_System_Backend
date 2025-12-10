@@ -86,5 +86,5 @@ connectDB(MONGO_URI);
 // }
 
 // Export handler for Vercel (named and default export)
-export const handler = serverless(app);
+const handler = serverless(app);
 export default handler;
